@@ -59,7 +59,9 @@
 			<div class="titleDetail">${sm.user_id }</div>
 			<div class="titleDetail">
 				${sm.ymd }
-				</td>
+			</div>
+			<div class="titleDetail">
+				${sm.rep }
 			</div>
 			<hr>
 			<div class="OutTextBox animate-box">
@@ -67,8 +69,7 @@
 					<div>
 						<h1>질문</h1>
 						<hr>
-						${sm.contentBr} <br>
-						<br>
+						${sm.contentBr} <br> <br>
 						<h1>답변</h1>
 						<hr>
 						${sm.replyBr}
@@ -79,10 +80,15 @@
 			<form action="oneinsertReg" method="post"
 				enctype="multipart/form-data">
 				<div class="bottomB">
-					<a class="btn btn-primary" href="onelist">목록으로</a><a
-						class="btn btn-primary" href="onemodify?board_no=${sm.board_no }">수정</a>
-				<a class="btn btn-primary"
-						href="onedelete?board_no=${sm.board_no }">삭제</a>
+					<a class="btn btn-primary" href="onelist">목록으로</a>
+
+						<c:if test="${sm.rep eq '처리중' }">
+							<a class="btn btn-primary"
+								href="onemodify?board_no=${sm.board_no }">수정</a>
+							<a class="btn btn-primary"
+								href="onedelete?board_no=${sm.board_no }">삭제</a>
+						</c:if>
+
 				</div>
 			</form>
 		</div>
