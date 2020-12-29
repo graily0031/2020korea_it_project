@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper
+	namespace="com.korea.health.admin.model.reservation.ReservationMapper">
+
+	<select id="branchList"
+		resultType="com.korea.health.admin.model.branch.BranchVO">
+		SELECT * FROM LOCATION order by lo_no
+		<!-- order by lo_no 추가하였음 -->
+	</select>
+
+
+	
+
+	<select id="reservationDetail"
+		resultType="com.korea.health.admin.model.reservation.ReservationVO"
+		parameterType="java.lang.Integer">
+		SELECT * FROM reservation WHERE re_NO = #{re_no}
+	</select>
+
+
+	<insert id="reservationInsert"
+		parameterType="com.korea.health.admin.model.reservation.ReservationVO">
+
+		insert into reservation
+		(
+		re_no, lo_no,
+		lo_name, type,
+		tr_name,
+		resdate, restime, user_name, user_id,
+		user_pw, user_tel, content)
+
+		values
+
+		(re_noidx.nextval, #{lo_no},
+		#{lo_name}, #{type}, #{tr_name},
+		#{resdate}, #{restime},
+		#{user_name}, #{user_id},
+		#{user_pw}, #{user_tel}, #{content}
+		)
+
+	</insert>
+
+	<update id="reservationModify"
+		parameterType="com.korea.health.admin.model.reservation.ReservationVO">
+
+		UPDATE reservation SET
+
+		re_no=#{re_no},
+		lo_no=#{lo_no},
+		lo_name=#{lo_name},
+		type=#{type},
+		tr_name=#{tr_name},
+		RESTIME=#{restime},
+		user_id=#{user_id},
+		user_name=#{user_name},
+		user_pw=#{user_pw},
+		user_tel=#{user_tel},
+		content=#{content}
+
+		WHERE re_no = #{re_no}
+
+	</update>
+
+
+	<delete id="reservationDelete"
+		parameterType="com.korea.health.admin.model.reservation.ReservationVO">
+		delete
+		from reservation
+		where re_no = #{re_no}
+	</delete>
+
+
+
+<!-- Num갯수를 위한 sql -->
+	<update id="newNum"
+		parameterType="com.korea.health.admin.model.reservation.ReservationVO">
+	<![CDATA[
+		update reservation set re_no = re_no - 1 where #{re_no} < re_no
+	]]>
+	</update>
+	<update id="resnewNum"
+		parameterType="com.korea.health.admin.model.reservation.ReservationTimeVO">
+	<![CDATA[
+		update restime set re_no = re_no - 1 where #{re_no} < re_no
+	]]>
+	</update>
+
+
+<!-- total갯수를 위한 sql -->
+	<select id="totalCnt" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		SELECT COUNT(*) FROM reservation where lo_no = #{lo_no}
+	</select>
+
+	<select id="resTotalCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM restime  where lo_no = #{lo_no}
+	</select>
+
+
+<!-- 검색을 위한 sql -->
+	<select id="searchCnt" resultType="java.lang.Integer"
+		parameterType="com.korea.health.service.Pagenation">
+		 SELECT COUNT(*) FROM reservation 
+		 where lo_no = #{locationNo} and ${keyField} like '%' || #{keyWord} || '%'
+	</select>
+	
+	<select id="resSearchCnt" resultType="java.lang.Integer"
+		parameterType="com.korea.health.service.Pagenation">
+		 SELECT COUNT(*) FROM restime 
+		where lo_no = #{locationNo} and ${keyField} like '%' || #{keyWord} || '%'
+	</select>
+	
+	<!-- 예약현황(페이징) 리스트 -->
+	<select id="reservationList"
+		resultType="com.korea.health.admin.model.reservation.ReservationVO"
+		parameterType="com.korea.health.service.Pagenation">
+				<![CDATA[
+        select * from (select rownum rnum, t1.* 
+         from (select * from reservation WHERE lo_no = #{locationNo}
+        ) t1) 
+         where rnum >= #{startList} and rnum <= #{endList}
+         ]]>
+	</select>
+	<select id="reservationResList"
+		resultType="com.korea.health.admin.model.reservation.ReservationTimeVO"
+		parameterType="com.korea.health.service.Pagenation">
+				<![CDATA[
+        select * from (select rownum rnum, t1.* 
+         from (select * from restime WHERE lo_no = #{locationNo}
+         ) t1) 
+         where rnum >= #{startList} and rnum <= #{endList}
+         ]]>
+	</select>
+	
+	<!-- 예약현황(검색+페이징) 리스트 -->
+	<select id="listAll"
+		resultType="com.korea.health.admin.model.reservation.ReservationVO"
+		parameterType="com.korea.health.service.Pagenation"
+		>
+		<![CDATA[
+        select * from (select rownum rnum, t1.* 
+         from (select * from reservation WHERE lo_no = #{locationNo} 
+         and ${keyField} like '%' || #{keyWord} || '%'
+        ) t1) 
+         where rnum >= #{startList} and rnum <= #{endList}
+         ]]>
+	</select>
+	
+	<select id="reslistAll"
+		resultType="com.korea.health.admin.model.reservation.ReservationTimeVO"
+		parameterType="com.korea.health.service.Pagenation"
+		>
+		<![CDATA[
+        select * from (select rownum rnum, t1.* 
+         from (select * from restime WHERE lo_no = #{locationNo} 
+         and ${keyField} like '%' || #{keyWord} || '%'
+        ) t1) 
+         where rnum >= #{startList} and rnum <= #{endList}
+         ]]>
+	</select>
+	
+
+	<!-- 예약할때마다 이용권 -1씩 차감 -->
+	<update id="MyResMinusCnt"
+		parameterType="com.korea.health.user.model.usermember.UserMemberVO">
+		<![CDATA[
+		update usermember  
+		set  reserve_cnt  =  reserve_cnt  - 1 
+		where user_id = #{user_id}
+        ]]>
+	</update>
+	
+		<!-- 예약인원수 테이블, 갯수가에 따라 실행 메소드가 다르다. -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="com.korea.health.admin.model.reservation.ReservationTimeVO">
+
+		select count(*)
+		from RESTIME
+		where lo_no = #{lo_no} and
+		resdate = #{resdate} and restime = #{restime}
+
+	</select>
+	
+	
+	<!--만약 존재하지않다면 다중테이블의 nowCnt에 1을 대입한다.(insert) -->
+	<insert id="noCount"
+		parameterType="com.korea.health.admin.model.reservation.ReservationTimeVO">
+
+		insert into RESTIME(lo_no, resdate, restime, nowCnt)
+		values (#{lo_no},#{resdate}, #{restime}, 1)
+
+	</insert>
+
+
+	<!-- 만약 데이터가 이미 존재한다면 다중테이블의 nowCnt를 1씩증가시킨다.(update) -->
+	<update id="addCount"
+		parameterType="com.korea.health.admin.model.reservation.ReservationTimeVO">
+		<![CDATA[
+		update RESTIME 
+		set nowCnt = nowCnt + 1 
+		where lo_no = #{lo_no} and resdate = #{resdate} and restime = #{restime}
+        ]]>
+	</update>
+	
+
+</mapper>

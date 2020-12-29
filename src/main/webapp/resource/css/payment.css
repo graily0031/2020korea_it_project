@@ -1,0 +1,299 @@
+@charset "UTF-8"; 
+
+body{
+	background-color: rgba(227, 227, 227, 0.7);
+
+
+}
+.mainTitle{
+	color: #000000;
+	font-size: 80px;
+	font-family: '나눔스퀘어';
+	margin: 20px 0 20px 80px;
+}
+.secon_box{
+	width:700px;
+	height:200px;
+	background:white;
+	border: 1px solid black;
+	margin: 0 20px 20px 50px;
+	padding-bottom:20px;
+
+}
+
+.mid_txt{
+	font-size: 35px;
+	font-family: '나눔스퀘어';
+	padding:20px 0 0 30px;
+}
+#mid_txt2{
+	font-size: 35px;
+	margin: 15px 0 20px 30px;
+	font-family: '나눔스퀘어';
+}
+#hr{
+	width:670px;
+}
+.name_in{
+	width: 400px;
+	height: 36px;
+	padding:0px 0 0 30px;
+}
+.name_in>input{
+	width:280px;
+	margin-left: 20px;
+}
+.tel_in>input{
+	width: 50px;
+	margin-left:5px;
+}
+.tel_in>input+input{
+	width:90px;
+}
+.mail_in>input, .mail_in>input+input{
+	width:130px;
+	margin-left:5px;
+}
+.tel_in, .bcop_in, .point_in{
+	width: 600px;
+	height: 36px;
+		padding:0 0 0 30px;
+}
+.mail_in, .scop_in{
+	width: 500px;
+	height: 36px;
+	padding:0px 0 0 30px;
+}
+
+.bcop_in>input, .scop_in >input, .point_in>input{
+	margin: 0 20px 0 40px;
+	box-shadow: 1px 1px 2px gray;
+	}
+	.scop_in >input{
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	}
+.scop_in>p, .point_in>p{
+	font-size: 12px;
+	font-family: '나눔스퀘어';
+	text-align: center;
+	display: inline-block;
+}
+.secon_box:nth-of-type(6){
+	
+	height:auto;
+	background:white;
+	border: 1px solid black;
+	margin: 0 20px 20px 50px;
+}
+.secon_box:nth-of-type(5){
+	height: 150px;
+}
+#card_btn, #card_btn2, #card_btn3{
+	cursor:pointer;
+	width: 32px;
+	border-radius:100%;
+	background: #BC9C6A;
+	line-height:30px;
+	border-style: none;
+	position: absolute;
+	margin: 8px 20px 10px 34px;
+		
+}
+#tri, #tri2, #tri3{
+	cursor:pointer;
+	position:relative;
+	margin: 10px 0px 0px 3px;
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-top: 16px solid white;
+}
+
+.onecli_in{
+	width: 100px;
+	height: 50px;
+	display: inline-block;
+}
+
+#tri > a, #tri2 > a, #tri3 > a {
+position:absolute;
+	display:inline;
+	top:-30px;
+	left:-3px;
+	text-decoration: none;
+
+}
+#card_btn2, #card_btn3
+{
+	background: #000000;	
+}
+#tri2, #tri3
+{
+	border-top: 16px solid gray;
+}
+#onepay{
+	width: 650px;
+	margin: 0 auto;
+	height: 120px;
+	background: gray;
+}
+hr{
+	width:670px;
+	text-align: center;
+}
+.card{
+	width:150px;
+	height: 100px;
+	float:left;
+	margin: 10px 0 0 20px;
+	background: pink;
+	text-align: center;
+	color: #ffffff;
+	font-size: 22px;
+	 overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#card_img{
+	width:150px;
+	height:100px;
+	position: absolute;
+	z-index: 0;
+}
+.card>div{
+	margin-top:52px;
+}
+.right_box{
+	position: absolute;
+	left:50em;
+	width: 380px;
+	height: auto;
+	padding-bottom:10px;
+	background: #fff;
+	border: 1px solid black;
+}
+.hr2{
+	width: 330px;
+	text-align: center;
+	margin-top :20px;
+}
+h4{
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.price{
+	width: 130px;
+	margin :0px;
+	display: inline-block;
+	float: right;
+	text-align: right;
+}
+.t_price{
+	width :350px;
+	margin: 20px 20px 0 20px;
+	display: inline-block;
+	
+}
+.btn{
+	position: absolute;
+	left:26.7em;
+	top: 20em;
+	width: 380px;
+	height: 60px;
+	background: #BC9C6A;
+	border-style: none;
+	font-size: 30px;
+	color: #fff;
+	
+}
+.t_price:nth-last-of-type(1) {
+	color: lightblue;
+	font-size: 25px;
+	font-family: '나눔스퀘어'
+}
+.t_price:nth-last-of-type(2) {
+	margin-top: 30px;
+	color: #BC9C6A;
+	font-size: 25px;
+	font-family: '나눔스퀘어'
+}
+.t_price:nth-last-of-type(3) {
+	margin-top: 30px;
+	color: #BC9C6A;
+	font-size: 25px;
+	font-family: '나눔스퀘어'
+}
+#basicpay, #basicpay2{
+	width: 650px;
+	margin: 0 auto;
+	height: 120px;
+	background: white;
+	display: none;
+}
+.cardcheck{
+	margin: 20px 0 20px 15px;
+}
+#paydate{
+display: inline-block;
+}
+.cardcheck>input:nth-child(1), .cardcheck>select, #paydate{
+	margin-left:30px;
+}
+
+.popup { display: none; position: fixed; left: 50%; top: 50%; z-index: 100; padding:52px 60px 60px; width: 820px; height: 300px; transform: translate(-50%, -50%); box-sizing: border-box; background: #fff;}
+.one_pay_popup { display: none; position: fixed; left: 50%; top: 50%; z-index: 100; padding:52px 60px 60px; width: 820px; height: 500px; transform: translate(-50%, -50%); box-sizing: border-box; background: #fff;}
+.input[name="keypad"] {width: 20px; height: 20px;}
+.popup h2, .one_pay_popup h2 { padding: 0 0 42px; border-bottom: 3px solid #444; font-weight: normal;font-size:36px; color:#222; text-align: center; line-height: 100%;}
+.popup .close, .one_pay_popup .close { position: absolute; right:40px; top: 40px; width: 41px; height: 41px; background: url(../../../resource/images/btn-close.png) no-repeat; color:transparent;}
+.popup .con, .one_pay_popup .con { padding: 40px 78px; border-bottom:1px solid #e8e8e8;}
+.dim { display: none;position: fixed; left: 0; top: 0; z-index: 99; width: 100%; height: 100%; background: rgba(0,0,0,0.5);}
+.txt_center { text-align: center; padding: 30px 0 0;}
+.btn_type1, .btn_type2 { display: inline-block;width: 170px; height: 50px; background: #de4f41; line-height: 50px; color:#fff; text-align: center; border-radius: 3px;}
+.box-radio-input input[type="radio"], #tri input[type="radio"], #tri2 input[type="radio"], #tri3 input[type="radio"]{
+  display:none;
+}
+
+.box-radio-input input[type="radio"] + span{
+  display:inline;
+  background:none;
+  border:none;  
+  color:#000;
+  padding:0px 10px;
+  text-align:center;
+  height:100px;
+  width:150px;
+  line-height:33px;
+  font-weight:500;
+  cursor:pointer;
+  position: relative;
+  z-index: 100;
+  top: 0;
+	left: 0;
+	  font-size: 15px;
+}
+
+.box-radio-input input[type="radio"]:checked + span{
+  color:#fff;
+   height:100px;
+  width:150px;
+  border: 1px solid #ffffff;
+  font-size: 15px;
+  
+}
+
+.cate_text{ text-align: center; padding-bottom: 5px; display: inline-block; margin : 0 auto;}
+
+#card_name{
+	position: relative;
+	z-index: 100;
+	font-size: 15px;
+}
+
+
